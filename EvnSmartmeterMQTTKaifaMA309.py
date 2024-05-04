@@ -9,6 +9,7 @@ import paho.mqtt.client as mqtt
 from gurux_dlms.GXDLMSTranslator import GXDLMSTranslator
 from gurux_dlms.GXDLMSTranslatorMessage import GXDLMSTranslatorMessage
 from bs4 import BeautifulSoup
+import html5lib
 
 # EVN Schlüssel eingeben zB. "36C66639E48A8CA4D6BC8B282A793BBB"
 evn_schluessel = "dein_Schlüssel"
@@ -30,7 +31,7 @@ comport = "/dev/ttyUSB0"
 #MQTT Init
 if useMQTT:
     try:
-        client = mqtt.Client("SmartMeter")
+        client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2,"SmartMeter")
         client.username_pw_set(mqttuser, mqttpasswort)
         client.connect(mqttBroker, port=1883)
     except:
