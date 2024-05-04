@@ -10,6 +10,7 @@ from gurux_dlms.GXDLMSTranslator import GXDLMSTranslator
 from gurux_dlms.GXDLMSTranslatorMessage import GXDLMSTranslatorMessage
 from bs4 import BeautifulSoup
 import html5lib
+import lxml
 
 # EVN Schlüssel eingeben zB. "36C66639E48A8CA4D6BC8B282A793BBB"
 evn_schluessel = "dein_Schlüssel"
@@ -63,7 +64,7 @@ while 1:
         pdu.clear()
         xml += tr.messageToXml(msg)
 
-    soup = BeautifulSoup(xml, 'html5lib')
+    soup = BeautifulSoup(xml, 'lxml')
 
     results_32 = soup.find_all('uint32')
     results_16 = soup.find_all('uint16')
